@@ -32,26 +32,32 @@
         </ion-item>
     </ion-list>
     <ion-button *ngIf="!readySent" expand="block" (click)="ready()">Listo! Ya estamos todos!</ion-button>
-    <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores...</ion-label>
+    <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores. Todos deben estar listos y no puedes jugar solo!</ion-label>
 </ion-content>
 
 <ion-content padding *ngIf="room.status == 'defining'">
-  <h1>A definir</h1>
-    <ion-item>
-        <ion-label position="stacked">{{ room.word }}:</ion-label>
-        <ion-textarea [(ngModel)]="definition" (onkeyup)="changeDefinition()" placeholder="Escribe aquí tu definición..."></ion-textarea>
-    </ion-item>
-    <ion-button expand="block" (click)="sendDefinition()">Enviar definición</ion-button>
-    <ion-label *ngIf="definitionSent == definition && definition" color="success">Definición enviada! Puedes modificarla hasta que el resto terminen y enviar una distinta.</ion-label>
+  <h1>A desfinir</h1>
+  <h2>"<b>{{ room.word }}</b>":</h2>
+  <ion-textarea [(ngModel)]="definition" (onkeyup)="changeDefinition()" placeholder="Escribe aquí tu definición..."></ion-textarea>
+  <div class="advice">Escribe una definición creible para engañar al resto</div>
+  <ion-button expand="block" (click)="sendDefinition()">Enviar definición</ion-button>
+  <div class="result" *ngIf="definitionSent == definition && definition">
+    Definición enviada! Puedes modificarla hasta que el resto terminen y enviar una distinta.
+  </div>
 </ion-content>
 
 <ion-content padding *ngIf="room.status == 'voting'">
     <h1>A votar</h1>
+    <h2>"<b>{{ room.word }}</b>":</h2>
     <ion-list>
-        <ion-item *ngFor="let definition of room.definitions" (click)="voteDefinition(definition)">
+        <ion-item class="definition-option" *ngFor="let definition of room.definitions" (click)="voteDefinition(definition)">
+          <ion-icon *ngIf="definition == definitionVoted" name="flag" float="left"></ion-icon>
           {{ definition }}
-          <ion-icon *ngIf="definition == definitionVoted" name="flag" style="float:right"></ion-icon>
         </ion-item>
     </ion-list>
-    <ion-label *ngIf="definitionVoted" color="success">Definición votada! Puedes modificar tu elección hasta que el resto terminen y votar una distinta.</ion-label>
+    <div class="advice">Selecciona la que creas que es la verdadera.</div>
+    <div class="result" *ngIf="definitionVoted">
+      Definición votada! Puedes modificar tu elección hasta que el resto terminen y votar una distinta.
+    </div>
+    
 </ion-content>

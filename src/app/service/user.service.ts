@@ -10,7 +10,10 @@ export class UserService {
   roomId: string;
 
   constructor() {
-    this.username = localStorage.getItem('username');
+    this.username = sessionStorage.getItem('username');
+    if (!this.username) { //Only if no local username i use the persiste from other window
+      this.username = localStorage.getItem('username');
+    }
     this.userSecret = sessionStorage.getItem('userSecret');
     if (!this.userSecret) {
         this.userSecret = this.generateUuidv4();
@@ -28,7 +31,8 @@ export class UserService {
 
   setUsername(username: string): void {
     this.username = username;
-    localStorage.setItem('username', username);
+    sessionStorage.setItem('username', username);
+    localStorage.setItem('username', username); // Persist for other window
   }
 
   setRoomId(roomId: string): void {
