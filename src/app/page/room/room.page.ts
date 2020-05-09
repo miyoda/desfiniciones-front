@@ -44,7 +44,9 @@ export class RoomPage implements OnInit {
         this.definitionVoted = '';
         this.modalController.create({
           component: ResultsModalComponent
-        }).then(modal => modal.present());
+        }).then(modal => {
+          modal.present();
+        });
       }
     });
   }
@@ -83,12 +85,23 @@ export class RoomPage implements OnInit {
 
   sendDefinition() {
     if (this.definition) {
+      this.definition = this.fixDefinition(this.definition);
       this.socket.emit('define', {roomId: this.room.roomId, userSecret: this.userService.userSecret, definition: this.definition});
       this.definitionSent = this.definition;
     }
   }
 
+  private fixDefinition(str) {
+    str = str.charAt(0).toUpperCase() + str.slice(1);
+    if (str.charAt(str.length - 1) === '.') {
+      str = str.substring(0, str.length - 1);
+    }
+    return str;
+  }
+
   voteDefinition(definition) {
+    console.log(definition);
+    console.log(this.definitionSent);
     if (definition === this.definitionSent) {
       this.alertControler.create({
         header: 'No puedes votar tu propia definición',

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { LoadingController, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
 import { SocketBehaviorService } from './service/socket-behavior.service';
 import { UserService } from './service/user.service';
@@ -24,6 +24,7 @@ export class AppComponent {
     private socket: Socket,
     private userService: UserService,
     private loadingController: LoadingController,
+    private alertControler: AlertController,
     private router: Router
   ) {
     this.initializeApp();
@@ -41,6 +42,12 @@ export class AppComponent {
         spinner: 'crescent'
       });
 
+      this.socketBehavior.exception.subscribe((exception) => {
+        this.alertControler.create({
+          header: exception.message,
+          buttons: ['Aceptar']
+        }).then((alert) => alert.present());
+      });
       this.socketBehavior.connect.subscribe((connected) => {
           if (connected) {
             this.loading.dismiss();
