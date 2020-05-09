@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
+import { HelpModalComponent } from 'src/app/component/help-modal/help-modal.component';
 import { ResultsModalComponent } from 'src/app/component/results-modal/results-modal.component';
 import { UsersModalComponent } from 'src/app/component/users-modal/users-modal.component';
 import { PublicRoom } from 'src/app/entity/public.room';
@@ -111,6 +112,12 @@ export class RoomPage implements OnInit {
       this.socket.emit('vote', {roomId: this.room.roomId, userSecret: this.userService.userSecret, definition: definition});
       this.definitionVoted = definition;
     }
+  }
+
+  showHelp() {
+    this.modalController.create({
+      component: HelpModalComponent
+    }).then(modal => modal.present());
   }
 
 }

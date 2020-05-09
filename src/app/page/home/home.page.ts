@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
+import { HelpModalComponent } from 'src/app/component/help-modal/help-modal.component';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     private socket: Socket,
     private userService: UserService,
-    private alertControler: AlertController
+    private alertControler: AlertController,
+    private modalController: ModalController,
   ) {
     this.username = userService.username;
   }
@@ -81,4 +83,11 @@ export class HomePage {
     }
     return text;
   }
+
+  showHelp() {
+    this.modalController.create({
+      component: HelpModalComponent
+    }).then(modal => modal.present());
+  }
 }
+

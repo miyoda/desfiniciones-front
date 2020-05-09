@@ -33,6 +33,10 @@ export class UserService {
 
   setRoomId(roomId: string): void {
     this.roomId = roomId;
-    sessionStorage.setItem('roomId', roomId);
+    if (roomId) {
+      sessionStorage.setItem('roomId', roomId);
+    } else {
+      sessionStorage.removeItem('roomId');
+    }
   }
 }

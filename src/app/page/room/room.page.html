@@ -5,6 +5,9 @@
         <ion-button *ngIf="room.status != 'unready'" (click)="showUsers()" color="primary"> 
           <ion-icon slot="icon-only" name="contacts"></ion-icon>
         </ion-button>
+        <ion-button (click)="showHelp()" color="primary"> 
+          <ion-icon slot="icon-only" name="help-circle"></ion-icon>
+        </ion-button>
         <ion-button (click)="tryExit()" color="primary"> 
           <ion-icon slot="icon-only" name="exit"></ion-icon>
         </ion-button>
@@ -12,7 +15,6 @@
     <ion-title color="primary">Partida {{room.roomId}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content padding *ngIf="room.status == 'unready'">
     <h1>¿Preparado?</h1>
@@ -34,7 +36,7 @@
 </ion-content>
 
 <ion-content padding *ngIf="room.status == 'defining'">
-    <h1>A definir</h1>
+  <h1>A definir</h1>
     <ion-item>
         <ion-label position="stacked">{{ room.word }}:</ion-label>
         <ion-textarea [(ngModel)]="definition" (onkeyup)="changeDefinition()" placeholder="Escribe aquí tu definición..."></ion-textarea>

@@ -42,7 +42,10 @@ export class AppComponent {
         spinner: 'crescent'
       });
 
-      this.socketBehavior.exception.subscribe((exception) => {
+      this.socketBehavior.exception.subscribe((exception: any) => {
+        if (exception.message === 'Partida no encontrada') {
+          this.userService.setRoomId(undefined);
+        }
         this.alertControler.create({
           header: exception.message,
           buttons: ['Aceptar']

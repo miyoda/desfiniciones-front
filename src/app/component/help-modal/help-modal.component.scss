@@ -1,0 +1,18 @@
+
+.info-content {
+  text-align: center;
+  .description {
+    text-align: left;
+  }
+  .number {
+    color: #FFF;
+    background: var(--ion-color-primary);
+    border: 1px solid var(--ion-color-primary);
+    font-weight: bolder;
+    border-radius: 54px;
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    margin-top: 12px;
+  }
+}
