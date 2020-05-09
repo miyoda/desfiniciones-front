@@ -31,11 +31,12 @@ export class HomePage {
     if (this.requireUsername()) {
       this.alertControler.create({
         header: 'Introduce el código de la partida',
-        message: 'Solicitaselo al creador de la partida.',
+        message: 'Pídeselo al creador de la partida.',
         inputs: [
           {
             name: 'roomId',
-            placeholder: 'XXXXX'
+            placeholder: 'XXXXX',
+            id: 'roomIdInput'
           },
         ],
         buttons: [{
@@ -44,7 +45,7 @@ export class HomePage {
         }, {
           text: 'Unirse',
           handler: (data) => {
-            this.joinRoom(data.roomId);
+            this.joinRoom(data.roomId.toUpperCase());
           },
         }]
       }).then((alert) => alert.present());

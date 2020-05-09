@@ -33,3 +33,7 @@
   max-width: 80%;
   margin: auto;
 }
+
+::ng-deep #roomIdInput {
+  text-transform: uppercase;
+}
