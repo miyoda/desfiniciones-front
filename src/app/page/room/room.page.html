@@ -1,0 +1,55 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+        <ion-button (click)="showUsers()" color="primary"> 
+          <ion-icon slot="icon-only" name="contacts"></ion-icon>
+        </ion-button>
+        <ion-button (click)="tryExit()" color="primary"> 
+          <ion-icon slot="icon-only" name="exit"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-title color="primary">Partida {{room.roomId}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding *ngIf="room.status == 'unready'">
+    <h1>¿Preparado?</h1>
+    <ion-list>
+        <ion-item *ngFor="let user of room.users">
+          <ion-icon 
+          [name]="!user.connected ? 'close-circle-outline' : user.ready ? 'checkmark-circle-outline' : 'time'"
+          [color]="!user.connected ? 'danger' : user.ready ? 'success' : 'warning'"
+          style="margin-right: 15px"
+             ></ion-icon>
+          <ion-label>
+            {{ user.username }}
+          </ion-label>
+          <ion-badge color="primary">{{ user.points}}</ion-badge>
+        </ion-item>
+    </ion-list>
+    <ion-button *ngIf="!readySent" expand="block" (click)="ready()">Listo</ion-button>
+    <ion-label *ngIf="readySent" color="success">Esperando al resto de jugadores...</ion-label>
+</ion-content>
+
+<ion-content padding *ngIf="room.status == 'defining'">
+    <h1>A definir</h1>
+    <ion-item>
+        <ion-label position="stacked">{{ room.word }}:</ion-label>
+        <ion-textarea [(ngModel)]="definition" (onkeyup)="changeDefinition()" placeholder="Escribe aquí tu definición..."></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" (click)="sendDefinition()">Enviar definición</ion-button>
+    <ion-label *ngIf="definitionSent == definition && definition" color="success">Definición enviada! Puedes modificarla hasta que el resto terminen y enviar una distinta.</ion-label>
+</ion-content>
+
+<ion-content padding *ngIf="room.status == 'voting'">
+    <h1>A votar</h1>
+    <ion-list>
+        <ion-item *ngFor="let definition of room.definitions" (click)="voteDefinition(definition)">
+          {{ definition }}
+          <ion-icon *ngIf="definition == definitionVoted" name="flag" style="float:right"></ion-icon>
+        </ion-item>
+    </ion-list>
+    <ion-label *ngIf="definitionVoted" color="success">Definición votada! Puedes modificar tu elección hasta que el resto terminen y votar una distinta.</ion-label>
+</ion-content>

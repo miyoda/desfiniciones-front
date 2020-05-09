@@ -1,0 +1,29 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title color="primary">Resultados de la ronda</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="dismissModal()" color="primary">Cerrar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-list>
+          <ion-item *ngFor="let definition of results.definitions">
+            <ion-icon 
+              [name]="definition.author ? 'close-circle-outline' : 'checkmark-circle-outline'" 
+              [color]="definition.author ? 'danger' : 'success'" 
+              style="margin-right: 15px"
+              ></ion-icon>
+            <ion-label>
+                <h2>{{ definition.definition }}</h2>
+                <h3>{{ definition.author }}</h3>
+                <p>Votada por: {{ definition.voters.join(', ') }}</p>
+            </ion-label>
+            <ion-badge color="primary">{{ definition.voters.length}}</ion-badge>
+          </ion-item>
+
+
+      </ion-list>
+  </ion-content>

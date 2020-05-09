@@ -1,0 +1,19 @@
+<ion-content scroll="false">
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+    <div class="splash-intro">
+      Desfiniciones
+    </div>
+  </div>
+  <div padding>
+    <ion-item>
+      <ion-label color="primary">Nombre</ion-label>
+      <ion-input placeholder="Chuck Norris" [(ngModel)]="username" (input)="onChangeUsername($event.target.value)"></ion-input>
+    </ion-item>
+    <br/>
+    <ion-button expand="block" (click)="createRoom()">Crear partida</ion-button>
+    <br/>
+    <ion-button expand="block" (click)="requestRoomId()">Unirse a partida</ion-button>
+  </div>
+</ion-content>

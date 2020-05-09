@@ -1,0 +1,25 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">{{room.users.length}} jugadores en {{room.roomId}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModal()" color="primary">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let user of room.users">
+          <ion-icon 
+          [name]="!user.connected ? 'close-circle-outline' : user.ready ? 'checkmark-circle-outline' : 'time'"
+          [color]="!user.connected ? 'danger' : user.ready ? 'success' : 'warning'"
+          style="margin-right: 15px"
+             ></ion-icon>
+          <ion-label>
+            {{ user.username }}
+          </ion-label>
+          <ion-badge color="primary">{{ user.points}}</ion-badge>
+        </ion-item>
+    </ion-list>
+</ion-content>
