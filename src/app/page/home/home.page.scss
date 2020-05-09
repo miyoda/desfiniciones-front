@@ -3,7 +3,7 @@
   position: relative;
   background: url('../../../assets/img/dictionary.jpg') no-repeat transparent;
   background-size: cover;
-  height: 45%;
+  height: 20%;
   z-index: 1;
   background-repeat: repeat-x;
   animation: animatedBackground 30s linear infinite;
@@ -32,4 +32,22 @@
   font-weight: bold;
   max-width: 80%;
   margin: auto;
+}
+
+.info-content {
+  text-align: center;
+  .description {
+    text-align: left;
+  }
+  .number {
+    color: #FFF;
+    background: var(--ion-color-primary);
+    border: 1px solid var(--ion-color-primary);
+    font-weight: bolder;
+    border-radius: 54px;
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    margin-top: 12px;
+  }
 }
