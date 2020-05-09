@@ -10,16 +10,17 @@
   
   <ion-content padding>
       <ion-list>
-          <ion-item *ngFor="let definition of results.definitions">
+          <ion-item text-wrap *ngFor="let definition of results.definitions">
             <ion-icon 
               [name]="definition.author ? 'close-circle-outline' : 'checkmark-circle-outline'" 
               [color]="definition.author ? 'danger' : 'success'" 
               style="margin-right: 15px"
               ></ion-icon>
-            <ion-label>
+            <ion-label text-wrap >
                 <h2>{{ definition.definition }}</h2>
                 <h3>{{ definition.author }}</h3>
-                <p>Votada por: {{ definition.voters.join(', ') }}</p>
+                <p *ngIf="definition.voters.length">Votada por: {{ definition.voters.join(', ') }}.</p>
+                <p *ngIf="!definition.voters.length">Nadie la ha votado.</p>
             </ion-label>
             <ion-badge color="primary">{{ definition.voters.length}}</ion-badge>
           </ion-item>

@@ -32,7 +32,7 @@
         </ion-item>
     </ion-list>
     <ion-button *ngIf="!readySent" expand="block" (click)="ready()">Listo! Ya estamos todos!</ion-button>
-    <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores...</ion-label>
+    <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores. Todos deben estar listos y no puedes jugar solo!</ion-label>
 </ion-content>
 
 <ion-content padding *ngIf="room.status == 'defining'">
