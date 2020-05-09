@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="primary">
-        <ion-button *ngIf="room.status != 'unready'" (click)="showUsers()" color="primary"> 
+        <ion-button *ngIf="room?.status != 'unready'" (click)="showUsers()" color="primary"> 
           <ion-icon slot="icon-only" name="contacts"></ion-icon>
         </ion-button>
         <ion-button (click)="showHelp()" color="primary"> 
@@ -12,11 +12,11 @@
           <ion-icon slot="icon-only" name="exit"></ion-icon>
         </ion-button>
       </ion-buttons>
-    <ion-title color="primary">Partida {{room.roomId}}</ion-title>
+    <ion-title color="primary">Partida {{room?.roomId}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding *ngIf="room.status == 'unready'">
+<ion-content padding *ngIf="room?.status == 'unready'">
     <h1>¿Preparado?</h1>
     <ion-list>
         <ion-item *ngFor="let user of room.users">
@@ -35,7 +35,7 @@
     <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores. Todos deben estar listos y no puedes jugar solo!</ion-label>
 </ion-content>
 
-<ion-content padding *ngIf="room.status == 'defining'">
+<ion-content padding *ngIf="room?.status == 'defining'">
   <h1>A desfinir</h1>
   <h2>"<b>{{ room.word }}</b>":</h2>
   <ion-textarea [(ngModel)]="definition" (onkeyup)="changeDefinition()" placeholder="Escribe aquí tu definición..."></ion-textarea>
@@ -46,7 +46,7 @@
   </div>
 </ion-content>
 
-<ion-content padding *ngIf="room.status == 'voting'">
+<ion-content padding *ngIf="room?.status == 'voting'">
     <h1>A votar</h1>
     <h2>"<b>{{ room.word }}</b>":</h2>
     <ion-list>
