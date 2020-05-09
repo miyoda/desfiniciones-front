@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="primary">
-        <ion-button (click)="showUsers()" color="primary"> 
+        <ion-button *ngIf="room.status != 'unready'" (click)="showUsers()" color="primary"> 
           <ion-icon slot="icon-only" name="contacts"></ion-icon>
         </ion-button>
         <ion-button (click)="tryExit()" color="primary"> 
