@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AlertController, ModalController, Platform } from '@ionic/angular';
 import { Socket } from 'ngx-socket-io';
 import { HelpModalComponent } from 'src/app/component/help-modal/help-modal.component';
 import { ResultsModalComponent } from 'src/app/component/results-modal/results-modal.component';
@@ -14,7 +13,7 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './room.page.html',
   styleUrls: ['./room.page.scss'],
 })
-export class RoomPage implements OnInit {
+export class RoomPage implements OnInit, OnDestroy {
 
   room: PublicRoom;
 
@@ -30,7 +29,7 @@ export class RoomPage implements OnInit {
     private modalController: ModalController,
     private alertControler: AlertController,
     private socket: Socket,
-    private router: Router,
+    private platform: Platform
   ) {
   }
 
@@ -50,6 +49,19 @@ export class RoomPage implements OnInit {
         });
       }
     });
+
+    this.platform.backButton.subscribe(async () => {
+      // Close any active modals or overlays
+      if (await this.modalController.getTop()) {
+        this.modalController.dismiss();
+      } else {
+        this.tryExit()
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.platform.backButton.unsubscribe();
   }
 
   tryExit() {
