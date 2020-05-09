@@ -29,8 +29,8 @@
           <ion-badge color="primary">{{ user.points}}</ion-badge>
         </ion-item>
     </ion-list>
-    <ion-button *ngIf="!readySent" expand="block" (click)="ready()">Listo</ion-button>
-    <ion-label *ngIf="readySent" color="success">Esperando al resto de jugadores...</ion-label>
+    <ion-button *ngIf="!readySent" expand="block" (click)="ready()">Listo! Ya estamos todos!</ion-button>
+    <ion-label *ngIf="readySent" color="success">Esperando confirmación del resto de jugadores...</ion-label>
 </ion-content>
 
 <ion-content padding *ngIf="room.status == 'defining'">
