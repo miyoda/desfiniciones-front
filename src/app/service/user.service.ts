@@ -10,7 +10,7 @@ export class UserService {
   roomId: string;
 
   constructor() {
-    this.username = sessionStorage.getItem('username');
+    this.username = localStorage.getItem('username');
     this.userSecret = sessionStorage.getItem('userSecret');
     if (!this.userSecret) {
         this.userSecret = this.generateUuidv4();
@@ -28,7 +28,7 @@ export class UserService {
 
   setUsername(username: string): void {
     this.username = username;
-    sessionStorage.setItem('username', username);
+    localStorage.setItem('username', username);
   }
 
   setRoomId(roomId: string): void {
