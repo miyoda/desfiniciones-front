@@ -13,7 +13,7 @@ import { CanActivateInRoom } from './service/can-activate-in-room';
 
 
 
-// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+// const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 const config: SocketIoConfig = { url: 'https://desfiniciones-back.herokuapp.com', options: {} };
 
 @NgModule({
