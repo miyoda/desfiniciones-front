@@ -67,14 +67,6 @@ export class AppComponent {
         }
       });
 
-      if (this.userService.roomId) {
-        this.socket.emit('join', {
-          roomId: this.userService.roomId,
-          userSecret: this.userService.userSecret,
-          username: this.userService.username
-        });
-      }
-
     });
   }
 }

@@ -21,6 +21,16 @@ export class HomePage {
     this.username = userService.username;
   }
 
+  ionViewWillEnter() {
+    if (this.userService.roomId) {
+      this.socket.emit('join', {
+        roomId: this.userService.roomId,
+        userSecret: this.userService.userSecret,
+        username: this.userService.username
+      });
+    }
+  }
+
   createRoom() {
     if (this.requireUsername()) {
       const roomId = this.generateString(5);
