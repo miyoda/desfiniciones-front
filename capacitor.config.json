@@ -1,0 +1,24 @@
+{
+  "appId": "es.miyoda.desfiniciones.app",
+  "appName": "Desfiniciones",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "ScrollEnabled": "false",
+      "android-minSdkVersion": "19",
+      "BackupWebStorage": "none",
+      "SplashMaintainAspectRatio": "true",
+      "FadeSplashScreenDuration": "300",
+      "SplashShowOnlyFirstTime": "false",
+      "SplashScreen": "/assets/img/logo_200.png",
+      "SplashScreenDelay": "3000"
+    }
+  }
+}

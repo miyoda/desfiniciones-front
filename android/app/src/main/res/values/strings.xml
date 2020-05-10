@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Desfiniciones</string>
+    <string name="title_activity_main">Desfiniciones</string>
+    <string name="package_name">es.miyoda.desfiniciones.app</string>
+    <string name="custom_url_scheme">es.miyoda.desfiniciones.app</string>
+</resources>

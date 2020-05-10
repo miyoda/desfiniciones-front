@@ -1,7 +1,8 @@
 {
   "name": "desfiniciones-front",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "id": "b9f2b5c3"
