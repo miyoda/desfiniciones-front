@@ -12,7 +12,6 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "postinstall": "ionic cordova build browser --prod --release --aot --minifyjs --optimizejs --minifycss --verbose",
         "resources": "cordova-res ios && cordova-res android && node scripts/resources.js"
     },
     "engines": {
