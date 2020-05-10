@@ -10,7 +10,7 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let user of room.users">
+        <ion-item *ngFor="let user of sortedUsers">
           <ion-icon 
           [name]="!user.connected ? 'close-circle-outline' : user.ready ? 'checkmark-circle-outline' : 'time'"
           [color]="!user.connected ? 'danger' : user.ready ? 'success' : 'warning'"
